@@ -1,0 +1,161 @@
+Body {
+  Font-family: Arial, sans-serif;
+  Background-color: #f4f4f9;
+  Display: flex;
+  Justify-content: center;
+  Align-items: center;
+  Min-height: 100vh;
+  Margin: 0;
+}
+
+.container {
+  Width: 90%;
+  Max-width: 700px;
+  Background: #ffffff;
+  Padding: 25px;
+  Box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  Border-radius: 8px;
+  Transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+  Transform: translateY(-3px);
+  Box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+H1 {
+  Font-size: 26px;
+  Color: #333;
+  Text-align: center;
+  Margin-bottom: 20px;
+}
+
+.error {
+  Color: #ff4d4d;
+  Font-size: 14px;
+  Margin-bottom: 10px;
+  Text-align: center;
+}
+
+Form {
+  Display: flex;
+  Flex-direction: column;
+  Align-items: center;
+  Width: 100%;
+}
+
+Label {
+  Font-weight: bold;
+  Color: #555;
+  Margin-bottom: 5px;
+  Align-self: flex-start;
+  Font-size: 14px;
+}
+
+#file, #question {
+  Width: 100%;
+  Padding: 12px;
+  Margin-bottom: 15px;
+  Border: 1px solid #ddd;
+  Border-radius: 4px;
+  Font-size: 16px;
+  Transition: box-shadow 0.3s ease;
+}
+
+#file:focus, #question:focus {
+  Box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+  Outline: none;
+}
+
+Button {
+  Padding: 10px 25px;
+  Font-size: 16px;
+  Color: #fff;
+  Background-color: #007bff;
+  Border: none;
+  Border-radius: 4px;
+  Cursor: pointer;
+  Transition: background-color 0.3s ease, transform 0.1s ease;
+  Margin-top: 10px;
+}
+
+Button:hover {
+  Background-color: #0056b3;
+}
+
+Button:active {
+  Transform: scale(0.98);
+}
+
+.response {
+  Margin-top: 20px;
+  Width: 100%;
+}
+
+.response h2 {
+  Font-size: 18px;
+  Color: #333;
+  Border-bottom: 2px solid #007bff;
+  Padding-bottom: 5px;
+  Margin-bottom: 10px;
+}
+
+.response p {
+  Font-size: 16px;
+  Color: #444;
+  Background: #f9f9f9;
+  Padding: 15px;
+  Border-radius: 8px;
+  Border: 1px solid #ddd;
+  Box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading spinner */
+.spinner {
+  Display: none;
+  Margin-top: 20px;
+  Width: 50px;
+  Height: 50px;
+  Border: 5px solid #f3f3f3;
+  Border-top: 5px solid #007bff;
+  Border-radius: 50%;
+  Animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Toast Notification */
+.toast {
+  Visibility: hidden;
+  Min-width: 200px;
+  Background-color: #333;
+  Color: #fff;
+  Text-align: center;
+  Border-radius: 8px;
+  Padding: 10px;
+  Position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  font-size: 14px;
+}
+
+.toast.show {
+  Visibility: visible;
+  Animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@keyframes fadein {
+  From { bottom: 20px; opacity: 0; }
+  To { bottom: 30px; opacity: 1; }
+}
+
+@keyframes fadeout {
+  From { bottom: 30px; opacity: 1; }
+  To { bottom: 20px; opacity: 0; }
+}
+

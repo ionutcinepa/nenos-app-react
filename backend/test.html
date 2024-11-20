@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>File input Test</title>
+    </head>
+    <body>
+        <form>
+            <label for="file">Choose PDF:</label>
+            <input type="file" id="file" accept=".pdf" />
+        </form>
+        <script>
+            document.getElementById('file').addEventListener('change',(event) => {
+                const file = event.target.files[0];
+                if (file) {
+                    console.log('Selected file: ${file.name} (${file.type})');
+                } else {
+                    console.log("No file selected");
+                }
+            });
+        </script>
+    </body>
+</html>
