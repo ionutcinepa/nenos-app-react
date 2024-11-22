@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 import FileUpload from './FileUpload';
-// import backend_url from '../config';
-import backend_url from '../config';
 
 const QuestionInput = ({ onResponse, onFileUpload }) => {
   const [question, setQuestion] = useState('');
 
-  // const backend_url = "http://127.0.0.1:8000"
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       // Fetch the document summary from the backend
-      const summaryResponse = await fetch(`${backend_url}/summary`);
+      const summaryResponse = await fetch('http://127.0.0.1:8000/summary');
       if (!summaryResponse.ok) {
         throw new Error('Failed to fetch document summary');
       }
@@ -25,7 +22,7 @@ const QuestionInput = ({ onResponse, onFileUpload }) => {
       const summary = summaryData.summary;
 
       // Submit the question and summary to the backend
-      const response = await fetch(`${backend_url}/ask`, {
+      const response = await fetch('http://127.0.0.1:8000/ask', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -36,7 +33,9 @@ const QuestionInput = ({ onResponse, onFileUpload }) => {
       if (!response.ok) {
         throw new Error('Error in response from /ask endpoint');
       }
+
       const data = await response.json();
+      // Pass the question and responses back to the parent component
       onResponse(question, data.cohere_answer, data.nlp_cloud_answer);
       setQuestion(''); // Clear input after submission
     } catch (error) {
@@ -46,8 +45,8 @@ const QuestionInput = ({ onResponse, onFileUpload }) => {
   };
 
   return (
-    <div className="bottom-bar">
-      {/* File Upload Button */}
+    <form onSubmit={handleSubmit} className="question-input-form">
+      {/* Upload Button */}
       <FileUpload onFileUpload={onFileUpload} />
 
       {/* Text Area */}
@@ -59,10 +58,8 @@ const QuestionInput = ({ onResponse, onFileUpload }) => {
       />
 
       {/* Ask Button */}
-      <button type="submit" className="ask-button" onClick={handleSubmit}>
-        Ask
-      </button>
-    </div>
+      <button type="submit" className="ask-button">Ask</button>
+    </form>
   );
 };
 

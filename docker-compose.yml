@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8000:8000" # Maps the backend service to port 8000 on your host
+    # volumes:
+    #   - ./backend:/app # Mount the backend directory for live updates
+    env_file:
+      - ./backend/.env # Environment variables for the backend
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000" # Maps the frontend service to port 3000 on your host
+    # volumes:
+    #   - ./frontend:/app # Mount the frontend directory for live updates
+    # stdin_open: true # Allows interaction in the terminal
+    # tty: true # Keeps the container running
+    depends_on:
+      - backend # Ensures the backend starts before the frontend
+
+
+

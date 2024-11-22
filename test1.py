@@ -73,8 +73,7 @@ async def ask_question(data: QuestionRequest):
 async def get_summary():
     """Return the cached document summary."""
     try:
-        cache_path = os.path.join(os.getcwd(), "../cached_summary.txt")
-        # return {"path": cache_path}
+        cache_path = os.path.join(os.getcwd(), "cached_summary.txt")
         if not os.path.exists(cache_path):
             raise HTTPException(status_code=404, detail="No cached summary found")
 
